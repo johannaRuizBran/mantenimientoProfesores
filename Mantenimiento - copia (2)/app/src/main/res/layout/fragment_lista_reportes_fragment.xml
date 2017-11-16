@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.joha.mantenimiento.lista_reportes_fragment">
+    <ListView
+        android:layout_weight="1"
+        android:background="@color/colorListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/paginaPrincipalListView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/agregarBoton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_action_agregar" />
+</FrameLayout>

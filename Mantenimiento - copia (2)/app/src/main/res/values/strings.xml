@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Mantenimiento-TEC</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login_activity">login_activity</string>
+    <string name="verMasInfo">Ver más información</string>
+    <string name="eliminar">Cancelar</string>
+    <string name="conectar">Mantenimiento</string>
+    <string name="Correo">Correo</string>
+    <string name="id">ID:</string>
+    <string name="laboratorio">Laboratorio:</string>
+    <string name="iniciarSesion">Iniciar Sesion</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="descripcion">Descripción:</string>
+    <string name="fechaSolicitud">Fecha:</string>
+    <string name="fechaRealizado">Fecha realizada:</string>
+    <string name="Laboratorio">Laboratorio:</string>
+    <string name="aceptarBoton">Insertar</string>
+    <string name="informacionSolicitada">Información Solicitada</string>
+    <string name="escribaLaInfoSolicitada">Escribir información solicitada:</string>
+    <string name="agregarInfoSolicitud">Solicitud:</string>
+    <string name="mensajeNuevoReporte">Nuevo reporte</string>
+    <string name="mensajeCancelacion">Se ha canccelado el reporte</string>
+    <string name="guardaContrasenna">Recordar Sesión</string>
+    <string name="misReportes">Mis reportes</string>
+    <string name="cerrarSesión">Cerrar sesión</string>
+</resources>

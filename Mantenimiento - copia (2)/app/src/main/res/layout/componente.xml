@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
+    <LinearLayout
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:textColor="@color/negro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/id"
+            android:id="@+id/paginaPrincipalLabelID"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+        <TextView
+            android:text="identificacion"
+            android:id="@+id/paginaPrincipalInputID"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text=""
+            style="?android:attr/buttonStyleSmall"
+            android:id="@+id/paginaPrincipalBotonInformacion"
+            android:background="@drawable/ic_action_mas_informacion"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/laboratorio"
+            android:textColor="@color/negro"
+            android:id="@+id/paginaPrincipalLabelLab"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+        <TextView
+            android:text="laboratorio"
+            android:id="@+id/paginaPrincipalInputLab"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

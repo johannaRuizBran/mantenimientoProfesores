@@ -1,0 +1,95 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.joha.mantenimiento.agregar_informacion_requerida_fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TableLayout
+        android:lines="3"
+        android:scrollbars = "vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:textColor="@color/negro"
+                android:text="@string/informacionSolicitada"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp">
+            <TextView
+                android:textColor="@color/negro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/agregarInfoSolicitud"
+                android:id="@+id/agregarInf" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="texto"
+                android:id="@+id/iformacionPedidaEnviadaServ" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/negro"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/escribaLaInfoSolicitada"
+                android:id="@+id/agregarInfoLabelEcribirInfo" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:background="@drawable/edit_text_style"
+                android:lines="4"
+                android:scrollbars = "vertical"
+                android:id="@+id/agregarInformacionInput"
+                android:layout_column="0"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp">
+            <Button
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/aceptarBoton"
+                android:id="@+id/agregarInformacionBoton"
+                android:layout_column="0" />
+        </TableRow>
+    </TableLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:key="preferencias_principal">
+    <Preference android:key="userName" android:title="nombre de usuario del usuario"/>
+    <Preference android:key="password" android:title="contraseña del usuario"/>
+    <Preference android:key="button" android:title="desactive"/>
+</PreferenceScreen>

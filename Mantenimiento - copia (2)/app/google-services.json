@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "360296012809",
+    "firebase_url": "https://mantenimiento-78995.firebaseio.com",
+    "project_id": "mantenimiento-78995",
+    "storage_bucket": "mantenimiento-78995.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360296012809:android:78ba3712f712aa3d",
+        "android_client_info": {
+          "package_name": "com.example.joha.mantenimiento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360296012809-u4eqt4i90f0n1uh8cmm5ph9ck20c4tkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNW8fL6JzXY6xkiNB-v7geAUvhQRbkAPs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
