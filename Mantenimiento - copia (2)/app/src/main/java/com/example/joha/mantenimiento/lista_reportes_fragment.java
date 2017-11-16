@@ -58,6 +58,7 @@ public class lista_reportes_fragment extends Fragment {
     @Override
     public void onResume(){
         listaReportes.clear();
+        nombreUsuarioConectado= Autentificacion.getNombreUsuarioConectado();
         obtenerListaReportesDeBase();
         if(Global.idSender.equals("MasInformacion")){
             Global.idSender= "nada";
@@ -67,7 +68,6 @@ public class lista_reportes_fragment extends Fragment {
         }
         else if(Global.idSender.equals("info")){
             Global.idSender= "nada";
-            System.out.print(Global.idABuscar);
             mas_informacion_fragment nuevoFragment = new mas_informacion_fragment();
             FragmentManager manager = getActivity().getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.ContentForFragments,nuevoFragment).addToBackStack("tag").commit();
@@ -82,9 +82,6 @@ public class lista_reportes_fragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_lista_reportes_fragment, container, false);
         listViewReportesCreadosUsuario= (ListView)rootView.findViewById(R.id.paginaPrincipalListView);
-        nombreUsuarioConectado= Autentificacion.getNombreUsuarioConectado();
-
-        System.out.print("\n\n\nusuario conectado: "+nombreUsuarioConectado);
 
         listaReportes=new ArrayList<>();
         listaElegidos= new ArrayList<>();

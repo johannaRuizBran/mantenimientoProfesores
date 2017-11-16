@@ -19,7 +19,8 @@ public class Autentificacion {
     private static Conexion conexion = new Conexion();
     private static String nombreUsuarioConectado= "";
 
-    public static void limpiarNombreUsuario(String nombre){
+
+    public static void nombreUsuario(String nombre){
         Autentificacion.nombreUsuarioConectado = nombre;
     }
 
@@ -31,10 +32,8 @@ public class Autentificacion {
         return nombreUsuarioConectado;
     }
 
-    public static void setNombreUsuarioConectado(String nombreUsuarioConectado) {
-        Autentificacion.nombreUsuarioConectado = nombreUsuarioConectado;
+    public static void setNombreUsuarioConectado() {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-
         Token token= new Token(refreshedToken,Autentificacion.nombreUsuarioConectado);
         Call<Boolean> call = conexion.getServidor().serverActualizarToken(token);
         call.enqueue(new Callback<Boolean>() {

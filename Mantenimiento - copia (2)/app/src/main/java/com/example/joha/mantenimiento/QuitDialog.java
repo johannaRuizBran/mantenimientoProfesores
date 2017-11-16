@@ -29,7 +29,7 @@ public class QuitDialog extends DialogFragment {
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_HOME);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        Autentificacion.limpiarNombreUsuario("");
+                        Autentificacion.nombreUsuario("");
                         SharedPreferences.Editor editor = Global.sharedPreferences.edit();
                         editor.putString("username","");
                         editor.putString("password","");

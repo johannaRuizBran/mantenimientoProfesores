@@ -68,7 +68,6 @@ public class login_activity extends AppCompatActivity {
                 public void onResponse(Call<Reporte> call, Response<Reporte> response) {
                     Reporte reporte= response.body();
                     if(!Global.sharedPreferences_username.isEmpty() && !Global.sharedPreferences_password.isEmpty()){
-                        Autentificacion.setNombreUsuarioConectado(Global.sharedPreferences_username);
                         if(reporte.getEstadoReporte().equals("informacion")){
                             Global.idSender= "MasInformacion";
                             Intent paginaPrincipal= new Intent(getApplicationContext(), MainActivity.class);
@@ -180,6 +179,8 @@ public class login_activity extends AppCompatActivity {
                     call.enqueue(new Callback<Usuario>() {
                         @Override
                         public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+
+                            Autentificacion.nombreUsuario(nombreUsuario);
                             if (checkBox.isChecked()){
                                 SharedPreferences.Editor editor = Global.sharedPreferences.edit();
                                 editor.putString("username",nombreUsuario);
@@ -187,7 +188,7 @@ public class login_activity extends AppCompatActivity {
                                 editor.putString("button","active");
                                 editor.apply();
                             }
-                            Autentificacion.setNombreUsuarioConectado(nombreUsuario);
+                            Autentificacion.setNombreUsuarioConectado();
                             Intent paginaPrincipal= new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(paginaPrincipal);
                         }
