@@ -45,4 +45,7 @@ public interface Servidor {
 
     @GET("Usuarios/obtenerListaTokenAdministradores")
     Call<List<String>> obtenerListaDeTokenAdmin();
+
+    @POST("Usuarios/insertarUsuario/{permisoAdmin}")
+    Call<Boolean> insertarUsuarioServer(@Body Usuario usuario,@Path("permisoAdmin") String permiso);
 }

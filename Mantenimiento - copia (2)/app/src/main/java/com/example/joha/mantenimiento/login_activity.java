@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -30,6 +31,7 @@ public class login_activity extends AppCompatActivity {
 
     /*VARIABLES GLOBALES*/
     EditText valContrasenna,valNombreUsuario;
+    TextView registroLink;
     Button botonLogin;
     String nombreUsuario;
     CheckBox checkBox;
@@ -58,7 +60,6 @@ public class login_activity extends AppCompatActivity {
 
         }
     }
-
 
     public void enviarAOtraPaginaSegunPush(){
         try{
@@ -103,6 +104,7 @@ public class login_activity extends AppCompatActivity {
         valContrasenna= (EditText)findViewById(R.id.loginInputContrasenna);
         valNombreUsuario= (EditText)findViewById(R.id.loginInputNombreUsuario);
         checkBox= (CheckBox)findViewById(R.id.checkBoxUsuario);
+        registroLink= (TextView)findViewById(R.id.linkRegistro);
         botonLogin= (Button)findViewById(R.id.loginBotonIniciar);
         Global.sharedPreferences =  getSharedPreferences("preferencias", Context.MODE_PRIVATE);
         Global.sharedPreferences_username = Global.sharedPreferences.getString("username","");
@@ -114,6 +116,14 @@ public class login_activity extends AppCompatActivity {
         if(!valNombreUsuario.getText().toString().equals("")){
             checkBox.setChecked(true);
         }
+
+        registroLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registroVista= new Intent(getApplicationContext(),Registro_activity.class);
+                startActivity(registroVista);
+            }
+        });
         accionarBotonIniciar();
         super.onResume();
     }

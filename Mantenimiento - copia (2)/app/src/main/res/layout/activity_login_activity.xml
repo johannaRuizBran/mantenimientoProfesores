@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="48dp"
-    android:lines="10"
-    android:scrollbars = "vertical">
+    android:padding="48dp">
 
     <TextView
         android:id="@+id/texto_conectar"
@@ -16,23 +21,33 @@
         android:text="@string/conectar"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
-        android:id="@+id/loginInputNombreUsuario"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:hint="@string/Correo" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText
+            android:id="@+id/loginInputNombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textSize="15sp"
+            android:hint="@string/Correo" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/loginInputContrasenna"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="@string/contraseña"
-        android:inputType="textPassword" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText
+            android:id="@+id/loginInputContrasenna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textSize="15sp"
+            android:hint="@string/password"/>
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatCheckBox
         android:layout_width="match_parent"
@@ -49,6 +64,19 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
+        android:textSize="13sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/blanco"
         android:text="@string/iniciarSesion" />
 
+    <TextView android:id="@+id/linkRegistro"
+        android:layout_marginTop="15dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/azul"
+        android:text="@string/noposeeCuenta"
+        android:gravity="center"
+        android:textSize="12sp"/>
 </LinearLayout>
+</ScrollView>

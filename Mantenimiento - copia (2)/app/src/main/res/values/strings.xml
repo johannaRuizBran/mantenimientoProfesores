@@ -30,4 +30,14 @@
     <string name="guardaContrasenna">Recordar Sesión</string>
     <string name="misReportes">Mis reportes</string>
     <string name="cerrarSesión">Cerrar sesión</string>
+    <string name="registrotitulo">Registro</string>
+    <string name="rol">Rol:</string>
+    <string name="telefono">Teléfono</string>
+    <string name="correo">Correo / e-mail</string>
+    <string name="apellido2">Segundo Apellido</string>
+    <string name="apellido1">Primer Apellido</string>
+    <string name="nombre">Nombre</string>
+    <string name="password">Contraseña</string>
+    <string name="nombreUsuario">Nombre de usuario</string>
+    <string name="noposeeCuenta">¿No posee cuenta? Regístrese aquí</string>
 </resources>

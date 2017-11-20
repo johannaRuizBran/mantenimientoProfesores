@@ -39,7 +39,7 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true"
-            android:process=":myprocess"></service>
+            android:process=":myprocess" />
 
         <receiver android:name=".RebootReceiver">
             <intent-filter>
@@ -52,6 +52,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".Registro_activity"></activity>
     </application>
 
 </manifest>

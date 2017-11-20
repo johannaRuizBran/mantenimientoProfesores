@@ -12,7 +12,7 @@ public class Global {
     static String sharedPreferences_password;
 
     static int posicionItemListViewPresionado;
-    static String idAplicacionAdministrador= "eeee";
+    static String existeError= "Error: es posible que el nombre de usuario ya exista";
     static String idSender= "nada";
     static String mensajeCancelar= "se ha cancelado el reporte numero: ";
 
