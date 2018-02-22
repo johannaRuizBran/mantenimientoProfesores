@@ -1,4 +1,10 @@
-package com.example.joha.mantenimiento;
+package com.example.joha.mantenimiento.Conexiones;
+
+import com.example.joha.mantenimiento.Clases.Reporte;
+import com.example.joha.mantenimiento.Clases.Token;
+import com.example.joha.mantenimiento.Clases.Usuario;
+import com.example.joha.mantenimiento.Clases.informacionFaltante;
+import com.example.joha.mantenimiento.Conexiones.ConexionPush;
 
 import java.util.List;
 

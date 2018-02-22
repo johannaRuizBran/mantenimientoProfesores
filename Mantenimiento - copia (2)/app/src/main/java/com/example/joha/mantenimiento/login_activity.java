@@ -4,12 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,11 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.security.AccessController;
-import java.util.List;
+import com.example.joha.mantenimiento.Clases.Reporte;
+import com.example.joha.mantenimiento.Clases.Usuario;
+import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Firebase.MyService;
+import com.example.joha.mantenimiento.Globales.Autentificacion;
+import com.example.joha.mantenimiento.Globales.Global;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -115,6 +111,9 @@ public class login_activity extends AppCompatActivity {
 
         if(!valNombreUsuario.getText().toString().equals("")){
             checkBox.setChecked(true);
+        }
+        else{
+            checkBox.setChecked(false);
         }
 
         registroLink.setOnClickListener(new View.OnClickListener() {

@@ -1,4 +1,4 @@
-package com.example.joha.mantenimiento;
+package com.example.joha.mantenimiento.Firebase;
 
 /**
  * Created by Joha on 13/8/2017.
@@ -15,6 +15,8 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.joha.mantenimiento.MainActivity;
+import com.example.joha.mantenimiento.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

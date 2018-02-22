@@ -1,12 +1,11 @@
-package com.example.joha.mantenimiento;
+package com.example.joha.mantenimiento.Firebase;
 
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
-import java.util.logging.Logger;
+import com.example.joha.mantenimiento.Firebase.MyService;
 
 public class ReInstallReceiver extends BroadcastReceiver {
     @Override

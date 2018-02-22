@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.joha.mantenimiento.Clases.informacionFaltante;
+import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Globales.Global;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

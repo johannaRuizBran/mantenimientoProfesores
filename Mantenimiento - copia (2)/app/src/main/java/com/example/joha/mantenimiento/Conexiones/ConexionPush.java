@@ -1,4 +1,4 @@
-package com.example.joha.mantenimiento;
+package com.example.joha.mantenimiento.Conexiones;
 
 import java.util.List;
 
@@ -21,8 +21,8 @@ public class ConexionPush {
     this.senderID=  "360296012809";
     * */
     public ConexionPush(String deviceID, String mensaje,int id) {
-        this.appID="AAAAU-NQ3Ak:APA91bE09KiPNvglm_JW6J25YXBF1crW94fEAjQPcXxEONIsskszOAtUUvBXmOInMf_XwXX3tqabswj6bHIEqJ4iX0BrfrMCDnbVEZjvda6q0hylyfNCxDh0FtIBdX6smRaWu9P9hXwH";
-        this.senderID=  "360296012809";
+        this.appID="AAAAgw2gviA:APA91bEUY2_Rm2j3mnb2EkPDlNr4967SBkCD8ivrVo5pRQ4BswCLQuI_zrkVmRu1td-NZuepl5XpUN9Kv_F4ZlDXASpDs4f5KBVe0mW4YartERGKCjEfqjqH1CvTvkyjeNuqOSy97N4z";
+        this.senderID=  "562869354016";
         this.deviceID = deviceID;
         this.mensaje = mensaje;
         this.idReporte= id;

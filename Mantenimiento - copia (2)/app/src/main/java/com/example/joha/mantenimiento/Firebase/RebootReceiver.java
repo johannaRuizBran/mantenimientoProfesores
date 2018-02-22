@@ -1,8 +1,10 @@
-package com.example.joha.mantenimiento;
+package com.example.joha.mantenimiento.Firebase;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.example.joha.mantenimiento.Firebase.MyService;
 
 public class RebootReceiver extends BroadcastReceiver {
     @Override

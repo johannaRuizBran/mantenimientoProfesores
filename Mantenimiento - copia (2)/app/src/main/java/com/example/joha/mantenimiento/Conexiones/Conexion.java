@@ -1,4 +1,4 @@
-package com.example.joha.mantenimiento;
+package com.example.joha.mantenimiento.Conexiones;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,7 +18,7 @@ public class Conexion {
         /*Parámetros:
         * Descripción: Permite la conexíon y posee la IP del servidor
         * */
-        this.baseurl = "http://172.24.43.59:8090";
+        this.baseurl = "http://172.24.42.5:8090";
         this.retrofit = new Retrofit.Builder().baseUrl(baseurl).addConverterFactory(GsonConverterFactory.create()).build();
         this.servidor = retrofit.create(Servidor.class);
     }

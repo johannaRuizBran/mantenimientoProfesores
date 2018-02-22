@@ -1,11 +1,8 @@
-package com.example.joha.mantenimiento;
+package com.example.joha.mantenimiento.Globales;
 
-import android.util.Log;
-import android.widget.Toast;
-
+import com.example.joha.mantenimiento.Clases.Token;
+import com.example.joha.mantenimiento.Conexiones.Conexion;
 import com.google.firebase.iid.FirebaseInstanceId;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

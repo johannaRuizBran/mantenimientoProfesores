@@ -4,12 +4,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.joha.mantenimiento.Clases.Reporte;
+import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Globales.Global;
 
 import retrofit2.Call;
 import retrofit2.Callback;

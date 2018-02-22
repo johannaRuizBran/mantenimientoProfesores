@@ -1,31 +1,26 @@
 package com.example.joha.mantenimiento;
-import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.example.joha.mantenimiento.Clases.Reporte;
+import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionPush;
+import com.example.joha.mantenimiento.Globales.Autentificacion;
+import com.example.joha.mantenimiento.Globales.Global;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
-import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +57,7 @@ public class crear_reporte_fragment extends Fragment {
         String desc=descripcionInput.getText().toString();
 
         if(fecha.isEmpty() || establecimiento.isEmpty()){
-            Toast.makeText(getContext(),Global.errorEspacioVacio, Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), Global.errorEspacioVacio, Toast.LENGTH_LONG).show();
         }
         else {
             Reporte nuevo= new Reporte(0,Global.estadoNuevo,null,null,fecha,
@@ -130,6 +125,7 @@ public class crear_reporte_fragment extends Fragment {
 
                     descripcionInput.setText("");
                     fechaInput.setText("");
+                    getFragmentManager().popBackStack();
                 }
                 @Override
                 public void onFailure(Call<Boolean> call, Throwable t) {

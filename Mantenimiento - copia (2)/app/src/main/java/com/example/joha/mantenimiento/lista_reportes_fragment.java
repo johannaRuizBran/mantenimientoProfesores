@@ -1,16 +1,13 @@
 package com.example.joha.mantenimiento;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.BoolRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +19,11 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.example.joha.mantenimiento.Clases.Reporte;
+import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionPush;
+import com.example.joha.mantenimiento.Globales.Autentificacion;
+import com.example.joha.mantenimiento.Globales.Global;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,6 @@ import retrofit2.Response;
  * A simple {@link Fragment} subclass.
  */
 public class lista_reportes_fragment extends Fragment {
-
     /*VARIABLES GLOBALES*/
 
     ListView listViewReportesCreadosUsuario;

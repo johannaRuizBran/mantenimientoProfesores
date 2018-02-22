@@ -28,7 +28,7 @@
         </activity>
 
         <!-- nueva -->
-        <service android:name=".MyFirebaseMessagingService">
+        <service android:name=".Firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSSAGING_EVENT" />
             </intent-filter>
@@ -36,17 +36,17 @@
 
         <!-- del profe -->
         <service
-            android:name=".MyService"
+            android:name=".Firebase.MyService"
             android:enabled="true"
             android:exported="true"
             android:process=":myprocess" />
 
-        <receiver android:name=".RebootReceiver">
+        <receiver android:name=".Firebase.RebootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".ReInstallReceiver">
+        <receiver android:name=".Firebase.ReInstallReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
