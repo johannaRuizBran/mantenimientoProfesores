@@ -40,4 +40,5 @@
     <string name="password">Contraseña</string>
     <string name="nombreUsuario">Nombre de usuario</string>
     <string name="noposeeCuenta">¿No posee cuenta? Regístrese aquí</string>
+    <string name="noPoseeReportes">Usted no posee reportes</string>
 </resources>

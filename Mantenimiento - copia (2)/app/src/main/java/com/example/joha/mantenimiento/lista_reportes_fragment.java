@@ -1,6 +1,8 @@
 package com.example.joha.mantenimiento;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -49,6 +52,9 @@ public class lista_reportes_fragment extends Fragment {
     FloatingActionButton fab;
     int idReporteSeleccionado;
     private View rootView;
+    TextView labelNoPoseeReportes;
+    ImageView imagenNoElementos;
+    int tieneSoloElementosCancelados;
 
 
     public lista_reportes_fragment() {
@@ -82,6 +88,9 @@ public class lista_reportes_fragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_lista_reportes_fragment, container, false);
         listViewReportesCreadosUsuario= (ListView)rootView.findViewById(R.id.paginaPrincipalListView);
+
+        imagenNoElementos= (ImageView)rootView.findViewById(R.id.imageNotFiles);
+        labelNoPoseeReportes= (TextView)rootView.findViewById(R.id.labelNoElementos);
 
         listaReportes=new ArrayList<>();
         listaElegidos= new ArrayList<>();
@@ -126,6 +135,7 @@ public class lista_reportes_fragment extends Fragment {
                     dialog.cancel();
                 }
             }).create().show();
+
     }
 
     public void showPopupMenu(final View view){
@@ -177,12 +187,28 @@ public class lista_reportes_fragment extends Fragment {
                 @Override
                 public void onResponse(Call<List<Reporte>> call, Response<List<Reporte>> response) {
                     listaReporteBase = response.body();
+                    if(listaReporteBase.size() == 0){
+                        imagenNoElementos.setVisibility(View.VISIBLE);
+                        labelNoPoseeReportes.setVisibility(View.VISIBLE);
+                        return;
+                    }
+                    tieneSoloElementosCancelados=0;
                     for (int i = 0; i < listaReporteBase.size(); i++)
                     {
                         if(!listaReporteBase.get(i).getEstadoReporte().equals("Cancelado")){
                             crearObjetoReporte(i);
                         }
+                        else{
+                            tieneSoloElementosCancelados+=1;
+                        }
                     }
+                    if (tieneSoloElementosCancelados== listaReporteBase.size()){
+                        listViewReportesCreadosUsuario.setVisibility(View.GONE);
+                        imagenNoElementos.setVisibility(View.VISIBLE);
+                        labelNoPoseeReportes.setVisibility(View.VISIBLE);
+                        return;
+                    }
+
                     listViewReportesCreadosUsuario.setAdapter(new Adapter(getContext()));
                 }
                 @Override
