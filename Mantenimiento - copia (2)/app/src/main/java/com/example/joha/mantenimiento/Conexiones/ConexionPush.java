@@ -5,6 +5,15 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+/**
+ * Esta clase permite la incorporación de la estructura para la implementación de mensajería push, en donde se debe
+ * de almacenar el mensaje que se enviará, el dispositivo al que va dirigido, id del reporte al cual se desea brindar la información,
+ * la identificación de la aplicacion en firebase y el id del enviador de también definido en firebase de la aplicación
+ * a la cual se desea enviar el mensaje.
+ *
+ * @see:
+ * @author: Johanna Ruiz B.
+ */
 
 public class ConexionPush {
     String appID;

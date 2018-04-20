@@ -3,6 +3,13 @@ package com.example.joha.mantenimiento.Clases;
 /**
  * Created by Joha on 4/6/2017.
  */
+
+/**
+ * Esta clase permite gestionar y formar la estructura de la información sobre un reporte que se encuentre en estado información
+ *
+ * @see:
+ * @author: Johanna Ruiz B.
+ */
 public class informacionFaltante {
     int idReporte;
     String observacion;

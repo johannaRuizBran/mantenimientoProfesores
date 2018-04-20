@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joha.mantenimiento.Clases.Reporte;
-import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionIP;
 import com.example.joha.mantenimiento.Conexiones.ConexionPush;
 import com.example.joha.mantenimiento.Globales.Autentificacion;
 import com.example.joha.mantenimiento.Globales.Global;
@@ -48,13 +48,14 @@ public class lista_reportes_fragment extends Fragment {
     ArrayList<Reporte> listaReportes= new ArrayList<>();
     ArrayList<Integer>listaElegidos;
     String nombreUsuarioConectado;
-    private Conexion conexion = new Conexion();
+    private ConexionIP conexionIP = new ConexionIP();
     FloatingActionButton fab;
     int idReporteSeleccionado;
     private View rootView;
     TextView labelNoPoseeReportes;
     ImageView imagenNoElementos;
     int tieneSoloElementosCancelados;
+
 
 
     public lista_reportes_fragment() {
@@ -64,20 +65,40 @@ public class lista_reportes_fragment extends Fragment {
     @Override
     public void onResume(){
         listaReportes.clear();
-        nombreUsuarioConectado= Autentificacion.getNombreUsuarioConectado();
-        obtenerListaReportesDeBase();
-        if(Global.idSender.equals("MasInformacion")){
-            Global.idSender= "nada";
-            agregar_informacion_requerida_fragment nuevoFragmento = new agregar_informacion_requerida_fragment();
-            FragmentManager manager2 = getActivity().getSupportFragmentManager();
-            manager2.beginTransaction().replace(R.id.ContentForFragments,nuevoFragmento).addToBackStack("tag").commit();
-        }
-        else if(Global.idSender.equals("info")){
-            Global.idSender= "nada";
-            mas_informacion_fragment nuevoFragment = new mas_informacion_fragment();
-            FragmentManager manager = getActivity().getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.ContentForFragments,nuevoFragment).addToBackStack("tag").commit();
-        }
+        AsyncTask<Void,Void, Boolean>processAsync= new AsyncTask<Void, Void, Boolean>() {
+            ProgressDialog mDialog= new ProgressDialog(getContext());
+            @Override
+            protected void onPreExecute() {
+                mDialog.setMessage("Loading..");
+                mDialog.show();
+            }
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                nombreUsuarioConectado= Autentificacion.getNombreUsuarioConectado();
+                obtenerListaReportesDeBase();
+                if(Global.idSender.equals("MasInformacion")){
+                    Global.idSender= "nada";
+                    agregar_informacion_requerida_fragment nuevoFragmento = new agregar_informacion_requerida_fragment();
+                    FragmentManager manager2 = getActivity().getSupportFragmentManager();
+                    manager2.beginTransaction().replace(R.id.ContentForFragments,nuevoFragmento).addToBackStack("tag").commit();
+                }
+                else if(Global.idSender.equals("info")){
+                    Global.idSender= "nada";
+                    mas_informacion_fragment nuevoFragment = new mas_informacion_fragment();
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.ContentForFragments,nuevoFragment).addToBackStack("tag").commit();
+                }
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+                mDialog.dismiss();
+
+            };
+        };
+        processAsync.execute();
         super.onResume();
     }
 
@@ -182,7 +203,7 @@ public class lista_reportes_fragment extends Fragment {
         * Descripción: Obtiene todos los Reportes que se encuentran almacenados dentro de la base de datos.
         * */
         try{
-            Call<List<Reporte>> call = conexion.getServidor().obtenerReportesDeUnUsuario(nombreUsuarioConectado);
+            Call<List<Reporte>> call = conexionIP.getServidor().obtenerReportesDeUnUsuario(nombreUsuarioConectado);
             call.enqueue(new Callback<List<Reporte>>() {
                 @Override
                 public void onResponse(Call<List<Reporte>> call, Response<List<Reporte>> response) {
@@ -222,7 +243,7 @@ public class lista_reportes_fragment extends Fragment {
 
     public void obtenrTokenUsuario(final int idReporteSeleccionado){
         try{
-            Call<List<String>> mensaje= conexion.getServidor().obtenerListaDeTokenAdmin();
+            Call<List<String>> mensaje= conexionIP.getServidor().obtenerListaDeTokenAdmin();
             mensaje.enqueue(new Callback<List<String>>() {
                 @Override
                 public void onResponse(Call<List<String>> call, Response<List<String>> response) {
@@ -236,6 +257,7 @@ public class lista_reportes_fragment extends Fragment {
                     catch (Exception e){
                         Toast.makeText(getContext(),Global.errorConexion, Toast.LENGTH_LONG).show();
                     }
+                    onResume();
                 }
 
                 @Override
@@ -251,7 +273,7 @@ public class lista_reportes_fragment extends Fragment {
     public void enviarMensaje(String token, final int idReporteSeleccionado){
         try{
             ConexionPush clase= new ConexionPush(token,"Se ha CANCELADO el reporte: "+ String.valueOf(idReporteSeleccionado),idReporteSeleccionado);
-            Call<String> mensaje= conexion.getServidor().serverEnviarMensajePush(clase);
+            Call<String> mensaje= conexionIP.getServidor().serverEnviarMensajePush(clase);
             mensaje.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
@@ -266,7 +288,6 @@ public class lista_reportes_fragment extends Fragment {
         }catch (Exception e){
             Toast.makeText(getContext(),Global.errorConexion, Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void eliminar(int posicion){
@@ -275,7 +296,7 @@ public class lista_reportes_fragment extends Fragment {
         * */
         try{
             idReporteSeleccionado= listaReportes.get(posicion).getId();
-            Call<Boolean> call = conexion.getServidor().cencelarReporte(idReporteSeleccionado, "Cancelado");
+            Call<Boolean> call = conexionIP.getServidor().cencelarReporte(idReporteSeleccionado, "Cancelado");
             call.enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {

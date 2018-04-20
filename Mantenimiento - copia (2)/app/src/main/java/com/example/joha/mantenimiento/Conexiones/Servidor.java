@@ -17,6 +17,14 @@ import retrofit2.http.Path;
 /**
  * Created by Joha on 26/5/2017.
  */
+
+/**
+ * Mediante este interface, se posee los distintos endpoints o rutas hacia el servidor que permiten las distintas
+ * consultas a la base de datos del sistema mantenimiento.
+ *
+ * @see:
+ * @author: Johanna Ruiz B.
+ */
 public interface Servidor {
     /*Parámetros:
     * Descripción:
@@ -54,4 +62,7 @@ public interface Servidor {
 
     @POST("Usuarios/insertarUsuario/{permisoAdmin}")
     Call<Boolean> insertarUsuarioServer(@Body Usuario usuario,@Path("permisoAdmin") String permiso);
+
+    @POST("Reporte/crearEnlaceLab/{idUsuario}")
+    Call<Boolean> crearEnlaceReporteALab(@Path("idUsuario") String idUsuario);
 }

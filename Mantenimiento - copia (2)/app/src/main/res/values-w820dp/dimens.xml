@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
-         (such as screen margins) for screens with more than 820dp of available width. This
-         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
-    <dimen name="activity_horizontal_margin">64dp</dimen>
-</resources>
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"ወደ መነሻ ይዳስሱ"</string>
+    <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s፣ %2$s"</string>
+    <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_descript"></string>
+ </resources>

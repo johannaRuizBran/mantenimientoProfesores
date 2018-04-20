@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "588260290911",
+    "firebase_url": "https://mantenimientoprofesortec.firebaseio.com",
+    "project_id": "mantenimientoprofesortec",
+    "storage_bucket": "mantenimientoprofesortec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588260290911:android:78ba3712f712aa3d",
+        "android_client_info": {
+          "package_name": "com.example.joha.mantenimiento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588260290911-86vohmockc8dpdngi62hfab9hbuvujhd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.joha.mantenimiento",
+            "certificate_hash": "cbdf2954bcdf18059a343646b503bda29ae3ae2e"
+          }
+        },
+        {
+          "client_id": "588260290911-i3gopupir2khlbvc5lf9pa05vr6v2u06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPMyhJGJbKHfgHWzeY5eClTiSNJdqdfac"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588260290911-i3gopupir2khlbvc5lf9pa05vr6v2u06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

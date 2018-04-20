@@ -105,6 +105,8 @@
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/aceptarBoton"
+                android:textColor="@color/blanco"
+                android:background="@color/colorPrimary"
                 android:id="@+id/crearBotonInsertar"
                 android:layout_column="0" />
         </TableRow>

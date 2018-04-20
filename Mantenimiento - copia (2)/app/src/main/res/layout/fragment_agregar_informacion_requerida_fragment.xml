@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="texto"
+                android:text="..."
                 android:id="@+id/iformacionPedidaEnviadaServ" />
         </TableRow>
 
@@ -87,6 +87,8 @@
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/aceptarBoton"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/blanco"
                 android:id="@+id/agregarInformacionBoton"
                 android:layout_column="0" />
         </TableRow>

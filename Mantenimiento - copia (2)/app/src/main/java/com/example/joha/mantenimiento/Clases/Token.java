@@ -1,5 +1,11 @@
 package com.example.joha.mantenimiento.Clases;
-
+/**
+ * Esta clase permite gestionar la información y formar la estructura del token del usuario utilizado
+ * para la implementación de mensajes Push.
+ *
+ * @see:
+ * @author: Johanna Ruiz B.
+ */
 public class Token {
     String token;
     String nombreUsuario;

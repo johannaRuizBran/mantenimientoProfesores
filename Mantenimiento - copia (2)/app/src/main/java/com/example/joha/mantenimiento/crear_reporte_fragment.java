@@ -2,6 +2,7 @@ package com.example.joha.mantenimiento;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joha.mantenimiento.Clases.Reporte;
-import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionIP;
 import com.example.joha.mantenimiento.Conexiones.ConexionPush;
 import com.example.joha.mantenimiento.Globales.Autentificacion;
 import com.example.joha.mantenimiento.Globales.Global;
@@ -38,7 +39,7 @@ public class crear_reporte_fragment extends Fragment {
     String [] listaDeLAboratorios={"LAB-01","LAB-02","Miniauditorio","Moviles","SIRZEE"};
     Spinner spinnerLaboratorios;
     Button botonAceptar, botonCalendario;
-    Conexion conexion;
+    ConexionIP conexionIP;
     private int dia, mes, año;
     private DatePickerDialog datePickerDialog;
 
@@ -47,6 +48,7 @@ public class crear_reporte_fragment extends Fragment {
         // Required empty public constructor
     }
 
+
     public void insertarReporteObjeto(){
         /*Parámetros:
         * Descripción: Crea instancia de un nuevo objeto Reporte el cual posee la información
@@ -54,7 +56,7 @@ public class crear_reporte_fragment extends Fragment {
         * */
         String establecimiento= spinnerLaboratorios.getSelectedItem().toString();
         String fecha=fechaInput.getText().toString();
-        String desc=descripcionInput.getText().toString();
+        String desc=descripcionInput.getText().toString().trim();
 
         if(fecha.isEmpty() || establecimiento.isEmpty()){
             Toast.makeText(getContext(), Global.errorEspacioVacio, Toast.LENGTH_LONG).show();
@@ -69,13 +71,14 @@ public class crear_reporte_fragment extends Fragment {
 
     public void obtenrTokenUsuario(final String usuarioReporte){
         try{
-            Call<List<String>> mensaje= conexion.getServidor().obtenerListaDeTokenAdmin();
+            Call<List<String>> mensaje= conexionIP.getServidor().obtenerListaDeTokenAdmin();
             mensaje.enqueue(new Callback<List<String>>() {
                 @Override
                 public void onResponse(Call<List<String>> call, Response<List<String>> response) {
                     List<String>lista= response.body();
                     for (int i = 0; i < lista.size(); i++)
                     {
+                        Log.d("hola: ", lista.get(i).toString());
                         enviarMensaje(lista.get(i),usuarioReporte);
                     }
                 }
@@ -93,7 +96,7 @@ public class crear_reporte_fragment extends Fragment {
     public void enviarMensaje(String token, final String usuarioReporte){
         try{
             ConexionPush clase= new ConexionPush(token,usuarioReporte+ " ha creado un NUEVO reporte",3);
-            Call<String> mensaje= conexion.getServidor().serverEnviarMensajePush(clase);
+            Call<String> mensaje= conexionIP.getServidor().serverEnviarMensajePush(clase);
             mensaje.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
@@ -110,19 +113,38 @@ public class crear_reporte_fragment extends Fragment {
         }
     }
 
+    public void crearEnlaceALAboratorio(String idUsuario){
+        try{
+            Call<Boolean> call = conexionIP.getServidor().crearEnlaceReporteALab(idUsuario);
+            call.enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+
+                }
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+                    Toast.makeText(getContext(),Global.errorConexion, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        catch (Exception e){
+            Toast.makeText(getContext(),Global.errorConexion,Toast.LENGTH_LONG).show();
+        }
+    }
+
     public void insertarNuevoreporteEnBase(final Reporte nuevo){
         /*Parámetros: nuevo= objeto reporte a insertar dentro de la base de datos
         * Descripción: Envía al nuevo Reporte a una función del servidor la cual insertará dicho
         * objeto dentro de la base de datos.
         * */
         try{
-            Call<Boolean> call = conexion.getServidor().crearReporte(nuevo);
+            Call<Boolean> call = conexionIP.getServidor().crearReporte(nuevo);
             call.enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                     Toast.makeText(getContext(),Global.mensajeInsertado, Toast.LENGTH_LONG).show();
                     obtenrTokenUsuario(Autentificacion.getNombreUsuarioConectado());
-
+                    crearEnlaceALAboratorio(Autentificacion.getNombreUsuarioConectado());
                     descripcionInput.setText("");
                     fechaInput.setText("");
                     getFragmentManager().popBackStack();
@@ -150,7 +172,7 @@ public class crear_reporte_fragment extends Fragment {
                 insertarReporteObjeto();
             }
         });
-        conexion= new Conexion();
+        conexionIP = new ConexionIP();
         introducirLaboratoriosAEspinner();
         fechaInput= (TextView)rootView.findViewById(R.id.fechaSeleccionada);
         botonCalendario=(Button)rootView.findViewById(R.id.botonCalendariio);

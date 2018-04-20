@@ -1,9 +1,12 @@
 package com.example.joha.mantenimiento;
 
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joha.mantenimiento.Clases.informacionFaltante;
-import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionIP;
 import com.example.joha.mantenimiento.Globales.Global;
 
 import retrofit2.Call;
@@ -31,7 +34,7 @@ public class agregar_informacion_requerida_fragment extends Fragment {
     private View rootView;
     EditText descripcionTexto;
     TextView informacionSolicitada;
-    private Conexion conexion = new Conexion();
+    private ConexionIP conexionIP = new ConexionIP();
     Button botonAgregarInfo;
 
     public agregar_informacion_requerida_fragment() {
@@ -52,7 +55,7 @@ public class agregar_informacion_requerida_fragment extends Fragment {
                 insertarNuevaInformación();
             }
         });
-        mostrarInformacionenviadaPorAdmin();
+        realizarProcesoInformacion();
         return rootView;
     }
 
@@ -62,8 +65,8 @@ public class agregar_informacion_requerida_fragment extends Fragment {
         * que solicita el administrador) dentro de la base de datos.
         * */
         try{
-            String infroamcionNueva= descripcionTexto.getText().toString();
-            Call<Boolean> call = conexion.getServidor().agregaMasInformacion(Global.idABuscar,infroamcionNueva);
+            String infroamcionNueva= descripcionTexto.getText().toString().trim();
+            Call<Boolean> call = conexionIP.getServidor().agregaMasInformacion(Global.idABuscar,infroamcionNueva);
             call.enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {
@@ -84,13 +87,36 @@ public class agregar_informacion_requerida_fragment extends Fragment {
         }
     }
 
+    public void realizarProcesoInformacion(){
+        AsyncTask<Void,Void, Boolean> processAsync= new AsyncTask<Void, Void, Boolean>() {
+            ProgressDialog mDialog= new ProgressDialog(getContext());
+            @Override
+            protected void onPreExecute() {
+                mDialog.setMessage("Loading..");
+                mDialog.show();
+            }
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                mostrarInformacionenviadaPorAdmin();
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+                mDialog.dismiss();
+
+            };
+        };
+        processAsync.execute();
+    }
+
     public void mostrarInformacionenviadaPorAdmin(){
         /*Parámetros:
         *Descripción: Muestra la información enviada por el administrados (la cual se encuentra dentro de la base de datos)
         * al usuario
         * */
         try{
-            Call<informacionFaltante> call = conexion.getServidor().informacionFaltanteBase(Global.idABuscar);
+            Call<informacionFaltante> call = conexionIP.getServidor().informacionFaltanteBase(Global.idABuscar);
             call.enqueue(new Callback<informacionFaltante>() {
                 @Override
                 public void onResponse(Call<informacionFaltante> call, Response<informacionFaltante> response) {

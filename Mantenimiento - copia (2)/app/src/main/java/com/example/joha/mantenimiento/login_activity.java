@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.joha.mantenimiento.Clases.Reporte;
 import com.example.joha.mantenimiento.Clases.Usuario;
-import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionIP;
 import com.example.joha.mantenimiento.Firebase.MyService;
 import com.example.joha.mantenimiento.Globales.Autentificacion;
 import com.example.joha.mantenimiento.Globales.Global;
@@ -31,7 +31,7 @@ public class login_activity extends AppCompatActivity {
     Button botonLogin;
     String nombreUsuario;
     CheckBox checkBox;
-    private Conexion conexion = new Conexion();
+    private ConexionIP conexionIP = new ConexionIP();
 
 
     protected void onNewIntent(Intent intent) {
@@ -59,7 +59,7 @@ public class login_activity extends AppCompatActivity {
 
     public void enviarAOtraPaginaSegunPush(){
         try{
-            Call<Reporte> call = conexion.getServidor().obtenerInfoReporte(Global.idABuscar);
+            Call<Reporte> call = conexionIP.getServidor().obtenerInfoReporte(Global.idABuscar);
             call.enqueue(new Callback<Reporte>() {
                 @Override
                 public void onResponse(Call<Reporte> call, Response<Reporte> response) {
@@ -172,23 +172,18 @@ public class login_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            final String contraseña= valContrasenna.getText().toString();
-            nombreUsuario= valNombreUsuario.getText().toString();
+            final String contraseña= valContrasenna.getText().toString().trim();
+            nombreUsuario= valNombreUsuario.getText().toString().trim();
 
             if (contraseña.equals("") || nombreUsuario.equals("")){
                 Toast.makeText(getApplication(),Global.errorEspacioVacio,Toast.LENGTH_LONG).show();
             }
             else{
                 try{
-                    char ultimo = nombreUsuario.charAt(nombreUsuario.length()-1);
-                    if(ultimo== ' '){
-                        nombreUsuario= nombreUsuario.substring(0,nombreUsuario.length()-1);
-                    }
-                    Call<Usuario> call = conexion.getServidor().get(nombreUsuario,contraseña);
+                    Call<Usuario> call = conexionIP.getServidor().get(nombreUsuario,contraseña);
                     call.enqueue(new Callback<Usuario>() {
                         @Override
                         public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-
                             Autentificacion.nombreUsuario(nombreUsuario);
                             if (checkBox.isChecked()){
                                 SharedPreferences.Editor editor = Global.sharedPreferences.edit();

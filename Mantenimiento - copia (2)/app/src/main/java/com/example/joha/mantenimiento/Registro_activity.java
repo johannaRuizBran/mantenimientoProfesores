@@ -10,7 +10,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.joha.mantenimiento.Clases.Usuario;
-import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionIP;
 import com.example.joha.mantenimiento.Globales.Global;
 
 import retrofit2.Call;
@@ -23,7 +23,7 @@ public class Registro_activity extends AppCompatActivity {
     String nombreS, nombreUsuarioS,apellido1S,apellido2S,correoS,telefonoS,contrasenaS,rolS;
     Button boton;
     Spinner spinerRol;
-    Conexion conexion;
+    ConexionIP conexionIP;
     String activo= "N";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class Registro_activity extends AppCompatActivity {
         correo= (EditText)findViewById(R.id.registro_input_email);
         telefono= (EditText)findViewById(R.id.registro_input_telefono);
         boton=(Button)findViewById(R.id.boton_registrar);
-        conexion= new Conexion();
+        conexionIP = new ConexionIP();
 
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +63,13 @@ public class Registro_activity extends AppCompatActivity {
     }
 
     public void crearElemento(){
-        nombreS= nombre.getText().toString();
-        nombreUsuarioS= nombreUsuario.getText().toString();
-        apellido1S= apellido1.getText().toString();
-        apellido2S= apellido2.getText().toString();
-        correoS= correo.getText().toString();
-        telefonoS= telefono.getText().toString();
-        contrasenaS= contrasena.getText().toString();
+        nombreS= nombre.getText().toString().trim();
+        nombreUsuarioS= nombreUsuario.getText().toString().trim();
+        apellido1S= apellido1.getText().toString().trim();
+        apellido2S= apellido2.getText().toString().trim();
+        correoS= correo.getText().toString().trim();
+        telefonoS= telefono.getText().toString().trim();
+        contrasenaS= contrasena.getText().toString().trim();
         rolS= spinerRol.getSelectedItem().toString();
 
         if(nombreUsuarioS.isEmpty() || nombreS.isEmpty() || apellido2S.isEmpty() || apellido1S.isEmpty()
@@ -97,7 +97,7 @@ public class Registro_activity extends AppCompatActivity {
 
     public void insertarEnBase(Usuario usuario){
         try{
-            Call<Boolean> call = conexion.getServidor().insertarUsuarioServer(usuario,usuario.getActivo());
+            Call<Boolean> call = conexionIP.getServidor().insertarUsuarioServer(usuario,usuario.getActivo());
             call.enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {

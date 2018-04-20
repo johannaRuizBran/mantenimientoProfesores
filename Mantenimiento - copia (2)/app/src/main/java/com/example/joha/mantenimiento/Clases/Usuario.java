@@ -3,6 +3,13 @@ package com.example.joha.mantenimiento.Clases;
 /**
  * Created by Joha on 26/5/2017.
  */
+
+/**
+ * Esta clase permite gestionar y formar la estructura de la información sobre el usuario.
+ *
+ * @see:
+ * @author: Johanna Ruiz B.
+ */
 public class Usuario {
     private String nombreUsuario;
     private String contrasena;

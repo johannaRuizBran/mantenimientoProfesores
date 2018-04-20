@@ -3,6 +3,14 @@ package com.example.joha.mantenimiento.Clases;
 /**
  * Created by Joha on 26/5/2017.
  */
+
+/**
+ * Esta clase permite gestionar la información y formar la estructura sobre los reportes.
+ * Posee la estructura necesaria para la implemantación de los reportes dentro del sistema
+ *
+ * @see:
+ * @author: Johanna Ruiz B.
+ */
 public class Reporte {
     int id;
     String estadoReporte;

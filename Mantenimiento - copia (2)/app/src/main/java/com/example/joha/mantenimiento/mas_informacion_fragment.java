@@ -1,4 +1,6 @@
 package com.example.joha.mantenimiento;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joha.mantenimiento.Clases.Reporte;
-import com.example.joha.mantenimiento.Conexiones.Conexion;
+import com.example.joha.mantenimiento.Conexiones.ConexionIP;
 import com.example.joha.mantenimiento.Globales.Global;
 
 import retrofit2.Call;
@@ -23,7 +25,7 @@ public class mas_informacion_fragment extends Fragment {
 
     /*VARIABLES GLOBALES*/
     private View rootView;
-    private Conexion conexion = new Conexion();
+    private ConexionIP conexionIP = new ConexionIP();
     TextView id, laboratorio, fechaRealizado, fechaDeSolicitud,descripcion;
 
 
@@ -44,9 +46,32 @@ public class mas_informacion_fragment extends Fragment {
         fechaDeSolicitud= (TextView) rootView.findViewById(R.id.informacionFechaInicialServ);
         fechaRealizado= (TextView) rootView.findViewById(R.id.informacionFechaFinalServ);
         descripcion= (TextView) rootView.findViewById(R.id.informacionDescripcionServ);
+        informacionDelReporte();
 
-        cargarInformacionDeReporte();
         return rootView;
+    }
+
+    public void informacionDelReporte(){
+        AsyncTask<Void,Void, Boolean> processAsync= new AsyncTask<Void, Void, Boolean>() {
+            ProgressDialog mDialog= new ProgressDialog(getContext());
+            @Override
+            protected void onPreExecute() {
+                mDialog.setMessage("Loading..");
+                mDialog.show();
+            }
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                cargarInformacionDeReporte();
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+                mDialog.dismiss();
+
+            };
+        };
+        processAsync.execute();
     }
 
 
@@ -56,7 +81,7 @@ public class mas_informacion_fragment extends Fragment {
          * sobre el reporte a mostrar en pantalla
         * */
         try{
-            Call<Reporte> call = conexion.getServidor().obtenerInfoReporte(Global.idABuscar);
+            Call<Reporte> call = conexionIP.getServidor().obtenerInfoReporte(Global.idABuscar);
             call.enqueue(new Callback<Reporte>() {
                 @Override
                 public void onResponse(Call<Reporte> call, Response<Reporte> response) {
